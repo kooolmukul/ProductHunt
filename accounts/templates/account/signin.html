@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container " style="margin:auto;">
+
+    <div class="justify-content-center align-items-center" style=" max-width: 350px; padding-top: 4.5rem; float: none; margin: 0 auto;">
+        {% if error %}
+        <div class="alert alert-danger text-center" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <div class="card" style="width: 22rem;">
+
+            <div class="card-body">
+                <h4 class="card-title mt-3 text-center">Sign In</h4>
+                {% comment %} <p class="divider-text">
+                    <span class="bg-light">OR</span>
+                </p> {% endcomment %}
+                <form method="POST" action="{% url 'signin' %}">
+                    {% csrf_token %}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span class="oi oi-person"></span></i> </span>
+                        </div>
+                        <input name="username" class="form-control" placeholder="Username" type="text">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <span class="oi oi-lock-locked"></span> </span>
+                        </div>
+                        <input class="form-control" placeholder="Create password" type="password" name="password">
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                    </div>
+                </form>
+                <!-- form-group// --
+                    </form>
+                </div>
+            </div> <!-- card.// -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

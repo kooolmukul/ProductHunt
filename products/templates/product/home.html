@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Discover your next favorite thing</h1>
+            <p class="lead text-muted mb-0">
+                    Product Hunt surfaces the best new products, every day. It's a place for product-loving enthusiasts to share and geek out about the latest mobile apps, websites, hardware projects, and tech creations.
+            </p>
+        </div>
+    </section>
+<div class="container" style="width: 90%;">
+
+<div class="col">
+        <div class="row">
+            {% for product in products.all  %}
+                       
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card" >
+                    <img class="card-img-top" src="{{product.icon.url}}" alt="Card image cap" style="width:100%; height:200px; cursor:pointer;" onclick="window.location='{% url 'detail' product.id %}';">
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="{% url 'detail' product.id %}" title="View Product">{{product.shortTitle}}</a></h4>
+                        <p class="card-text">{{product.summary}}</p>
+                        <div class="row">
+                            <div class="col">
+                                
+                            </div>
+                            <div class="col">
+                                <a href="#" class="btn btn-success btn-sm btn-block" onclick="window.location= '{% url 'upvote' product.id %}'; "><span
+                                    class="oi oi-chevron-top">Upvote <small>{{product.votes_total}}</small> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            
+            {% endfor %}
+            
+            <!-- <div class="col-12">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

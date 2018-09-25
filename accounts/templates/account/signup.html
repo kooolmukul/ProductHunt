@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container align-items-center">
+
+    <div class="justify-content-center align-items-center" style=" max-width: 350px; padding-top: 4.5rem; float: none; margin: 0 auto;">
+        {% if error %}
+        <div class=" alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
+
+        <div class="card float-center" style="width: 22rem;">
+            <div class="card-body">
+                <h4 class="card-title mt-3 text-center">Sign Up</h4>
+
+                <form method="POST" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <span class="oi oi-person"></span></i> </span>
+                        </div>
+                        <input name="username" class="form-control" placeholder="Username" type="text">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <span class="oi oi-lock-locked"></span></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="Create password" type="password" , name="password">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <span class="oi oi-lock-locked"></span> </span>
+                        </div>
+                        <input class="form-control" placeholder="Repeat password" type="password" , name="confirmPassword">
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

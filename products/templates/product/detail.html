@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container " style="margin-left:10%;">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Title -->
+            <div class="row">
+                <div class="col-md-2">
+                    <img class="rounded-circle img-fluid d-block mx-auto" src="{{product.icon.url}}" alt="" style="margin-top:5%; width:70px; height:70px;">
+                </div>
+
+
+                <div class="col-md-8">
+                    <a href="{{product.url}}">
+                        <h3 class="mt-6">{{product.title}}</h3>
+                    </a>
+
+                    <!-- Author -->
+                    <p class="lead">
+                        by
+                        {{product.hunter}}
+                    </p>
+
+                    <hr>
+                </div>
+
+
+            </div>
+            <img class="img-fluid rounded" src="{{product.image.url}}" alt="" style="width:100%;height:450px;"/>
+            
+            <!-- Preview Image -->
+            
+            <hr>
+            <p class="float-right"><span class="oi oi-calendar"></span> {{product.pub_date_pretty}}</p>
+            <br>
+
+            <p>{{product.body}}</p>
+
+
+            <hr>
+        </div>
+        <div class="col-md-1"></div>
+
+        {% if user.is_authenticated %}
+        <div class="col-md-2">
+
+            <!-- Search Widget -->
+            <br><br>
+            <div class="card my-2">
+                <a href="javascript:{document.getElementById('upvote').submit()}" class="btn btn-lg btn-primary"><span
+                        class="oi oi-chevron-top"></span> Upvote {{product.votes_total}}</span></a>
+
+            </div>
+            <form id="upvote" method="POST" action="{% url 'upvote' product.id %}">
+                {% csrf_token %}
+                <input type="hidden">
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+
+
+
+
+{% endblock %}
